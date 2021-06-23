@@ -13,11 +13,21 @@ class ArtistController extends AbstractController
      */
     public function artist(): Response
     {
-        $color = ["secondary", "danger", "info", "warning", "light", "success"];
+        $border_color = ["secondary", "danger", "info", "warning", "light", "success"];
+        $bg_color = ["secondary", "danger", "info", "warning"];
+        $categories=[
+            "Melodique" => "danger",
+            "Industrielle" => "info",
+            "Groovy" => "secondary",
+            "Deep" => "warning",
+            "Détroit" => "success",
+        ];
         return $this->render('artist/artist.html.twig', [
             'controller_name' => 'ArtistController',
-            'colors' => $color,
-            ]);
+            'border_colors' => $border_color,
+            'bg_colors' => $bg_color,
+            'categories' => $categories,
+        ]);
     }
 
     /**
