@@ -19,13 +19,13 @@ class Artist
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @gedmo\Slug(fields={"name"})
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
      */
     private $slug;
 
@@ -36,7 +36,7 @@ class Artist
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="artists")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 
@@ -103,7 +103,7 @@ class Artist
         return $this->concert;
     }
 
-    public function setConcert(?int $concert): self
+    public function setConcert(int $concert): self
     {
         $this->concert = $concert;
 

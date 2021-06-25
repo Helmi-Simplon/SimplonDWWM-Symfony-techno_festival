@@ -7,19 +7,12 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    private array $categories=[
-        "Melodique" => "danger",
-        "Industrielle" => "info",
-        "Groovy" => "secondary",
-        "Deep" => "warning",
-        "Détroit" => "success",
-    ];
-
+  
     public function load(ObjectManager $manager)
     {
         // $product = new Product();
         // $manager->persist($product);
 
-        $manager->flush();
+        //$manager->flush();
     }
 }
