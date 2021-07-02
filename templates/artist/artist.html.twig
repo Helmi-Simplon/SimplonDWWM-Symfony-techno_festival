@@ -5,31 +5,27 @@
 {% block body %}
 
 <div class="d-flex my-5 justify-content-center">
-    {% for name,color in categories %}
-        <button type="button" class="btn btn-outline-{{ color}}">{{ name}} </button>
+<a href="{{ path('artist') }}" role="button" type="button" class="btn btn-outline-primary mx-1">Tous</a>
+    {% for category in categories %}
+        <a href={{ path('category_id', {id: category.id }) }} type="button" class="btn btn-outline-{{ category.color }}">{{ category.label }}</a>
     {% endfor %}
-
 </div>
-
 <div class="row">
-    {% for artist in 0..25 %}
-    {# <pre>
-        {{ dump(color) }}
-    </pre> #}
+    {% for artist in artists %}
     <div class="col-4">
-        <div class="card mb-3 {{ "border-" ~ random(border_colors) }}"  style="max-width: 20rem;">
-                <div class="card-header align-self-end">
-                    <span class="badge rounded-pill {{ "bg-" ~ random(bg_colors) }}">Lorem, ipsum.</span>
-                </div>
-                <div class="card-body">
-                <h4 class="card-title">Artist n°{{ loop.index }}</h4>
-                <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing ...</p>
+        <div class="card mb-3 border-{{ artist.category ? artist.category.color : 'dark' }}"  style="max-width: 20rem;">
+            <div class="card-header align-self-end">
+                <span class="badge rounded-pill bg-{{ artist.concert ? 'primary' : 'secondary' }}">{{ artist.concert ? 'En concert' : 'Musik de rue' }}</span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ artist.name }}</h4>
+                <p class="card-text">{{ artist.description | u.truncate(100, '...') }}</p>
                 <div>
                     <small>
-                        <a href={{ path('artist_id', {id: loop.index}) }}>Découvrir l'artiste</a>
+                        <a href={{ path('artist_id', {id: artist.id }) }}>Découvrir l'artiste</a>
                     </small>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
     {% endfor %}

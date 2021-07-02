@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Planification des concerts{% endblock %}
+
+{% block body %}
+    <table class='table'>
+        {% set index = 0 %}
+        {% for day in days %}
+            {% for hour in hours %}
+                <tr class="border-1 border-info">
+                    <td class="text-center">{{ day }}</td>
+                    <td class="text-center">{{ hour }}</td>
+                    <td class="text-center">{{ artists[index].name }}</td>
+                    <td class="text-center"><a href="{{ path('ticket_home', { artist_id: artists[index].id}) }}" class="btn btn-primary">Réserver une place</a></td>
+                </tr>
+                {% set index = index + 1 %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+{% endblock %}

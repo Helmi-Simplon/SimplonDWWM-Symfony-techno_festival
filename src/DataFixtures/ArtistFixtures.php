@@ -13,9 +13,9 @@ class ArtistFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for($i = 0; $i < 25; $i++) {
+        for($i = 0; $i < 5; $i++) {
             $artist = new Artist();
-            $artist->setName('DJ' . $faker->firstName());
+            $artist->setName('DJ ' . $faker->firstName());
             $artist->setDescription($faker->paragraphs(3, true));
             $manager->persist($artist);
         }

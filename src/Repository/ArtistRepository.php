@@ -22,19 +22,18 @@ class ArtistRepository extends ServiceEntityRepository
     // /**
     //  * @return Artist[] Returns an array of Artist objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByConcert()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('a.id','a.concert', 'a.name')
+            ->where('a.concert IS NOT NULL')
             ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Artist
@@ -47,4 +46,18 @@ class ArtistRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByCategorie($category_id): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT *
+            FROM App\Entity\Post p
+            WHERE p.category_id = :category'
+        )
+        ->setParameter('category', $category_id)
+        ;
+        return $query->getResult();
+    }
 }
